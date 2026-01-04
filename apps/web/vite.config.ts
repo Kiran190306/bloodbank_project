@@ -14,7 +14,9 @@ import { restart } from './plugins/restart';
 import { restartEnvFileChange } from './plugins/restartEnvFileChange';
 
 export default defineConfig({
-  base: "/bloodbank_project/", 
+  // ✅ VERCEL FIX (IMPORTANT)
+  base: "/",  
+
   envPrefix: 'NEXT_PUBLIC_',
 
   optimizeDeps: {
@@ -23,7 +25,6 @@ export default defineConfig({
       '@hono/auth-js/react',
       '@hono/auth-js',
       '@auth/core',
-      '@hono/auth-js',
       'hono/context-storage',
       '@auth/core/errors',
       'fsevents',
@@ -36,10 +37,12 @@ export default defineConfig({
   plugins: [
     nextPublicProcessEnv(),
     restartEnvFileChange(),
+
     reactRouterHonoServer({
       serverEntryPoint: './__create/index.ts',
       runtime: 'node',
     }),
+
     babel({
       include: ['src/**/*.{js,jsx,ts,tsx}'],
       exclude: /node_modules/,
@@ -49,6 +52,7 @@ export default defineConfig({
         plugins: ['styled-jsx/babel'],
       },
     }),
+
     restart({
       restart: [
         'src/**/page.jsx',
@@ -59,6 +63,7 @@ export default defineConfig({
         'src/**/route.ts',
       ],
     }),
+
     consoleToParent(),
     loadFontsFromTailwindSource(),
     addRenderIds(),
