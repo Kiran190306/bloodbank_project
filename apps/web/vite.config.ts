@@ -14,8 +14,6 @@ import { restart } from './plugins/restart';
 import { restartEnvFileChange } from './plugins/restartEnvFileChange';
 
 export default defineConfig({
-  // ✅ VERCEL FIX (IMPORTANT)
-  base: "/",  
 
   envPrefix: 'NEXT_PUBLIC_',
 

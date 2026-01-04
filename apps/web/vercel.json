@@ -1,8 +1,14 @@
 {
-  "rewrites": [
+  "functions": {
+    "api/index.ts": {
+      "runtime": "nodejs20.x"
+    }
+  },
+  "routes": [
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "src": "/(.*)",
+      "dest": "/api/index.ts"
     }
   ]
 }
+
